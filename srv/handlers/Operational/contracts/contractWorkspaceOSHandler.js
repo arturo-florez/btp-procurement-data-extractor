@@ -66,51 +66,51 @@ function insertData(aData, realm)  {
                 //1 Delete potential record dependencies
                 try {
                    
-                    await DELETE("sap.ariba.ContractWorkspace_AllOwners_OP").where({
-                        ContractWorkspace_Realm : sRealm ,
-                        ContractWorkspace_InternalId : sInternalId
+                    await DELETE("sap.ariba.ContractWorkspaces_AllOwners_OP").where({
+                        ContractWorkspaces_Realm : sRealm ,
+                        ContractWorkspaces_InternalId : sInternalId
                     });
-                    await DELETE("sap.ariba.ContractWorkspace_NotificationProfiles_OP").where({
-                        ContractWorkspace_Realm : sRealm ,
-                        ContractWorkspace_InternalId : sInternalId
+                    await DELETE("sap.ariba.ContractWorkspaces_NotificationProfiles_OP").where({
+                        ContractWorkspaces_Realm : sRealm ,
+                        ContractWorkspaces_InternalId : sInternalId
                     });
-                    await DELETE("sap.ariba.ContractWorkspace_AdhocSpendUsers_OP").where({
-                        ContractWorkspace_Realm : sRealm ,
-                        ContractWorkspace_InternalId : sInternalId
+                    await DELETE("sap.ariba.ContractWorkspaces_AdhocSpendUsers_OP").where({
+                        ContractWorkspaces_Realm : sRealm ,
+                        ContractWorkspaces_InternalId : sInternalId
                     });
-                    await DELETE("sap.ariba.ContractWorkspace_Client_OP").where({
-                        ContractWorkspace_Realm : sRealm ,
-                        ContractWorkspace_InternalId : sInternalId
+                    await DELETE("sap.ariba.ContractWorkspaces_Client_OP").where({
+                        ContractWorkspaces_Realm : sRealm ,
+                        ContractWorkspaces_InternalId : sInternalId
                     });
-                    await DELETE("sap.ariba.ContractWorkspace_NoticeEmailRecipients_OP").where({
-                        ContractWorkspace_Realm : sRealm ,
-                        ContractWorkspace_InternalId : sInternalId
+                    await DELETE("sap.ariba.ContractWorkspaces_NoticeEmailRecipients_OP").where({
+                        ContractWorkspaces_Realm : sRealm ,
+                        ContractWorkspaces_InternalId : sInternalId
                     });
-                    await DELETE("sap.ariba.ContractWorkspace_Region_OP").where({
-                        ContractWorkspace_Realm : sRealm ,
-                        ContractWorkspace_InternalId : sInternalId
+                    await DELETE("sap.ariba.ContractWorkspaces_Region_OP").where({
+                        ContractWorkspaces_Realm : sRealm ,
+                        ContractWorkspaces_InternalId : sInternalId
                     });
-                    await DELETE("sap.ariba.ContractWorkspace_AffectedParties_OP").where({
-                        ContractWorkspace_Realm : sRealm ,
-                        ContractWorkspace_InternalId : sInternalId
+                    await DELETE("sap.ariba.ContractWorkspaces_AffectedParties_OP").where({
+                        ContractWorkspaces_Realm : sRealm ,
+                        ContractWorkspaces_InternalId : sInternalId
                     });
-                    await DELETE("sap.ariba.ContractWorkspace_Commodity_OP").where({
-                        ContractWorkspace_Realm : sRealm ,
-                        ContractWorkspace_InternalId : sInternalId
+                    await DELETE("sap.ariba.ContractWorkspaces_Commodity_OP").where({
+                        ContractWorkspaces_Realm : sRealm ,
+                        ContractWorkspaces_InternalId : sInternalId
                     });
-                    await DELETE("sap.ariba.ContractWorkspace_ExpiringEmailRecipients_OP").where({
-                        ContractWorkspace_Realm : sRealm ,
-                        ContractWorkspace_InternalId : sInternalId
+                    await DELETE("sap.ariba.ContractWorkspaces_ExpiringEmailRecipients_OP").where({
+                        ContractWorkspaces_Realm : sRealm ,
+                        ContractWorkspaces_InternalId : sInternalId
                     });
-                    await DELETE("sap.ariba.ContractWorkspace_ComplexSpendReleaseCreators_OP").where({
-                        ContractWorkspace_Realm : sRealm ,
-                        ContractWorkspace_InternalId : sInternalId
+                    await DELETE("sap.ariba.ContractWorkspaces_ComplexSpendReleaseCreators_OP").where({
+                        ContractWorkspaces_Realm : sRealm ,
+                        ContractWorkspaces_InternalId : sInternalId
                     });
-                    await DELETE("sap.ariba.ContractWorkspace_ComplexSpendReleaseApprovers_OP").where({
-                        ContractWorkspace_Realm : sRealm ,
-                        ContractWorkspace_InternalId : sInternalId
+                    await DELETE("sap.ariba.ContractWorkspaces_ComplexSpendReleaseApprovers_OP").where({
+                        ContractWorkspaces_Realm : sRealm ,
+                        ContractWorkspaces_InternalId : sInternalId
                     });
-                    await DELETE("sap.ariba.ContractWorkspace_OP").where({
+                    await DELETE("sap.ariba.ContractWorkspaces_OP").where({
                         Realm : sRealm ,
                         InternalId : sInternalId,
                     });
@@ -122,7 +122,7 @@ function insertData(aData, realm)  {
                 }
 
                 //New record, insert
-                await INSERT .into ("sap.ariba.ContractWorkspace_OP") .entries (oDataCleansed) ;
+                await INSERT .into ("sap.ariba.ContractWorkspaces_OP") .entries (oDataCleansed) ;
                          
            
             } catch (e) {                
