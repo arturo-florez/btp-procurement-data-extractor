@@ -77,7 +77,7 @@
         {
             "name": "updatedDateFrom",
             "field": "TimeUpdated",
-            "op": ">",
+            "op": ">=",
             "defaultValue": null
         }
     ]
