@@ -30,6 +30,26 @@ function _mapEntityStructure (oDataCleansed) {
         }
     }
 
+    // Normalize nested ApprovalRequests -> Approver (can arrive as object but CDS expects array for deep insert of composition)
+    if (oDataCleansed && Array.isArray(oDataCleansed.ApprovalRequests)) {
+        for (let i = 0; i < oDataCleansed.ApprovalRequests.length; i++) {
+            const req = oDataCleansed.ApprovalRequests[i];
+            if (req && req.Approver) {
+                // In some payloads Approver is delivered as single object instead of array
+                if (!(req.Approver instanceof Array)) {
+                    req.Approver = [ req.Approver ];
+                } else {
+                    // ensure plain mapping (clone) to avoid accidental shared references
+                    req.Approver = req.Approver.map(a => a); 
+                }
+            }
+        }
+    }
+
+    // Defensive: remove any falsely flattened foreign key artifacts that could be null (would violate NOT NULL on association FKs)
+    // We only keep the composition arrays; CAP will derive the foreign keys (DocumentTask_* columns) automatically.
+    // If previous processing introduced spurious keys like DocumentTask_Realm inside children, they are safe; we don't delete explicitly here.
+
     return oDataCleansed;
    
 }
