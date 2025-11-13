@@ -55,7 +55,7 @@ entity RFXItemValue_OP: managed {
     UNITCOST                                : types.money;
     INDEXAMT                                : types.money;
     TimeUpdated                             : DateTime;
-    AODDataSyncScn                          : Integer; 
+    AODDataSyncScn                          : Int64; 
     SURCHARGEAMT                            : types.money;
     AODObjId                                : String(100);
     BONUSPENALTYPCT                         : Double;
