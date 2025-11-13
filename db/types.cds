@@ -123,7 +123,7 @@ type contextObject{
 }
 
 type userPIISnapshot{
-    OrganizationName:String(100);
+    OrganizationName:String(255);
     Phone:String(70);
     TimeZoneID: String(100);
     AODUserID:String(100);
@@ -133,11 +133,11 @@ type userPIISnapshot{
     Fax:String(70);
     UniqueName:String(100);
     EmailAddress:String(100);
-    Name:String(100);
+    Name:String(255);
 }
 type effectiveUser {
     UniqueName                  : String(255);
-    Name                        : String(255);
+    Name                        : String(500);
     FirstName                   : String(255);
     Phone                       : String(70);
     LastName                    : String(255);
@@ -187,7 +187,7 @@ type scorecardKPI{
 }
 
 type userdata {
-    UserId                  : String(50);
+    UserId                  : String(255);
     PasswordAdapter         : String(50);
     SourceSystem            : String(100);
 }
@@ -203,7 +203,7 @@ type srProject {
 }
 
 type projectOwner {
-    UserId                  : String(50);
+    UserId                  : String(255);
     SourceSystem            : String(100);
 }
 
@@ -238,7 +238,7 @@ type supplier {
 
 type contact {
     SourceSystem            : String(100);
-    UserId                  : String(50);
+    UserId                  : String(255);
     PasswordAdapter         : String(50);
 }
 
@@ -385,7 +385,7 @@ type rfxOwner {
     UniqueName                          : String(50);
     FirstName                           : String(255);
     LastName                            : String(255);
-    Name                                : String(100);
+    Name                                : String(500);
     Phone                                : String(100);
     Fax                                : String(100);
     EmailAddress                       : String(100);
@@ -433,7 +433,7 @@ type orderinfo {
 
 type user {
     SourceSystem                        : String(100);
-    UserId                              : String(50);
+    UserId                              : String(255);
     PasswordAdapter                     : String(50);
 }
 
@@ -446,7 +446,7 @@ type event {
 
 type surrogate {
     SourceSystem:       String(100);
-    UserId:             String(50);
+    UserId:             String(255);
     PasswordAdapter:    String(50);
 }
 
@@ -494,7 +494,7 @@ type group {
 
 type requester {
     SourceSystem                : String(100);
-    UserId                      : String(50);
+    UserId                      : String(255);
     PasswordAdapter             : String(50);
 }
 
@@ -579,7 +579,7 @@ type eventType {
 
 type owner {
     SourceSystem    : String(100);
-    UserId          : String(50);
+    UserId          : String(255);
     PasswordAdapter : String(50);
 }
 
@@ -645,7 +645,7 @@ type savings{
 }
 
 type approver{
-    Name: String(255);
+    Name: String(500);
     UniqueName: String(100);
 }
 
@@ -679,12 +679,12 @@ type accountCategory {
 
 type country {
     UniqueName      : String(50);
-    Name      : String(50);
+    Name      : String(100);
 }
 
 type corporateAddress {
     Phone      : String(70);
-    Name       : String(128);
+    Name       : String(255);
 }
 
 type parentOrganization {
@@ -702,7 +702,7 @@ type address {
     Fax             :  String(50);
     UniqueName      : String(50);
     Lines           : String(1000);
-    Name            : String(255);
+    Name            : String(500);
 }
 
 type postalAddress {
@@ -900,12 +900,12 @@ type parentWorkspace{
 type invitedUser{
     Fax: String(100);
     Phone: String(100);  
-    Name: String(100);   
-    FirstName: String(100);   
-    MiddleName: String(100);   
-    LastName: String(100);   
-    UniqueName : String(100);
-    EmailAddress: String(100);
+    Name: String(500);   
+    FirstName: String(255);   
+    MiddleName: String(255);   
+    LastName: String(255);   
+    UniqueName : String(255);
+    EmailAddress: String(255);
 }
 type rfxContent{
     Category: String(50);
@@ -1110,7 +1110,7 @@ type supplierOrderInfo {
 }
 
 type genericName {
-    Name            : String(255);
+    Name            : String(500);
 }
 
 type milestone {
@@ -1124,7 +1124,7 @@ type milestone {
 
 type respondent {
     SourceSystem        : String(100);
-    UserId              : String(50);
+    UserId              : String(255);
     PasswordAdapter     : String(50);
 }
 
@@ -1152,7 +1152,7 @@ type savingsFormInfo {
 // concur types
 
 type vendorAddress: {
-    Name            : String(255);
+    Name            : String(500);
     DiscountTerms   : String(255); //unsure
     AddressCode     : String(50);
     VendorCode      : String(50);
@@ -1166,7 +1166,7 @@ type vendorAddress: {
 }
 
 type companyAddress: {
-    Name            : String(255);
+    Name            : String(500);
     Address1        : String(255);
     Address2        : String(255);
     Address3        : String(255);
@@ -1177,7 +1177,7 @@ type companyAddress: {
 }
 
 type poAddress: {
-    Name            : String(255);
+    Name            : String(500);
     Address1        : String(255);
     Address2        : String(255);
     Address3        : String(255);

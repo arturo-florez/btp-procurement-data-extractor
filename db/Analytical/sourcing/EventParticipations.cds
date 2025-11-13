@@ -14,7 +14,7 @@ entity EventParticipations_AN: managed,types.customFields  {
     key EventId                             : String(50);
     key ItemId                              : String(50);
     key EventVersion                        : Integer;
-    key BidderUserId                        : String(50);
+    key BidderUserId                        : String(255);
     key SupplierId                          : String(50);
 
         Event                               : types.event;

@@ -15,7 +15,7 @@ entity SupplierParticipations_AN: managed,types.customFields  {
     key ItemId                  : String(50);
     key EventVersion            : Integer;
     key SupplierId              : String(50);
-    key BidderUserId            : String(50);
+    key BidderUserId            : String(255);
 
         LoadCreateTime          : DateTime;
         LoadUpdateTime          : DateTime;
