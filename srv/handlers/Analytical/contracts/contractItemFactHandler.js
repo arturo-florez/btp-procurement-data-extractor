@@ -44,11 +44,11 @@ function insertData(aData, realm)  {
 
                 //1 Delete potential record dependencies
                 try {
-                    await DELETE("sap.ariba.ContractItem_ItemCommodity_AN").where({
+                    await DELETE("sap.ariba.ContractItem_ItemCommodity").where({
                         ContractItem_Realm : sRealm ,
                         ContractItem_ItemId : sItemId
                     });
-                    await DELETE("sap.ariba.ContractItem_CommodityEscalationClause_AN").where({
+                    await DELETE("sap.ariba.ContractItem_CommodityEscalationClause").where({
                         ContractItem_Realm : sRealm ,
                         ContractItem_ItemId : sItemId
                     });
