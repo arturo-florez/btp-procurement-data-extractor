@@ -29,6 +29,12 @@ modules:
      app-name: btp-procurement-data-extractor-srv
      disk-quota: 1GB
      memory: 1GB
+   properties:
+     CDS_HANA_POOL_MIN: 5
+     CDS_HANA_POOL_MAX: 50
+     CDS_HANA_ACQUIRE_TIMEOUT: 60000
+     CDS_HANA_CREATE_TIMEOUT: 30000
+     CDS_HANA_IDLE_TIMEOUT: 300000
    requires:
     # Resources extracted from CAP configuration
     - name: btp-procurement-data-extractor-hana

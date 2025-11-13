@@ -39,7 +39,17 @@
       }
     },
     "hana": {
-      "deploy-format": "hdbtable"
+      "deploy-format": "hdbtable",
+      "pool": {
+        "min": 5,
+        "max": 50,
+        "acquireTimeoutMillis": 60000,
+        "createTimeoutMillis": 30000,
+        "destroyTimeoutMillis": 5000,
+        "idleTimeoutMillis": 30000,
+        "reapIntervalMillis": 1000,
+        "createRetryIntervalMillis": 200
+      }
     },
     "requires": {
       "db": "hana",
