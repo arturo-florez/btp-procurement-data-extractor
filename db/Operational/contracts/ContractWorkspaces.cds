@@ -9,9 +9,9 @@ using sap.ariba.type as types from '../../types';
 
 
 /**
-    Name:	                ContractWorkspace (Strategic Sourcing)
-    Description:	        ContractWorkspace
-    Database Source:    	Operational Reporting API
+    Name:            ContractWorkspace (Strategic Sourcing)
+    Description:     ContractWorkspace
+    Database Source: Operational Reporting API
 */
 
 entity ContractWorkspaces_OP : managed {

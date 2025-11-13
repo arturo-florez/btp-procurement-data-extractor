@@ -8,9 +8,9 @@ using {
 using sap.ariba.type as types from '../../types';
 
 /**
-    Name:	                Contracts
-    Description:	        Contracts
-    Database Table Name:	Operational Reporting API
+    Name:                Contracts
+    Description:         Contracts
+    Database Table Name: Operational Reporting API
 */
 
 entity Contracts_OP : managed, types.customFields {

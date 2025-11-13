@@ -5,8 +5,8 @@ using {managed} from '@sap/cds/common';
 using sap.ariba.type as types from '../../types';
 
 /**
-    Name:  Audit Entry
-    Sourcing Audit Entry log
+    Name:        Audit Entry
+    Description: Sourcing Audit Entry log
 */
 
 entity AuditEntry_OP : managed {

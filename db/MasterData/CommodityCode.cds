@@ -1,13 +1,14 @@
 namespace sap.ariba;
-using { managed } from '@sap/cds/common';
+
+using {managed} from '@sap/cds/common';
 
 /**
-    Name:	                commoditycodes entity
-    Description:	        CommodityCodes from mds-search API
+    Name:        commoditycodes entity
+    Description: CommodityCodes from mds-search API
 */
-entity CommodityCode_MD: managed {
-    key UniqueName                          : String(50);
-    key Domain                              : String(50);
-    key Realm                               : String(50);
-        Name_en                             : String(512);
+entity CommodityCode_MD : managed {
+    key UniqueName : String(50);
+    key Domain     : String(50);
+    key Realm      : String(50);
+        Name_en    : String(512);
 }
