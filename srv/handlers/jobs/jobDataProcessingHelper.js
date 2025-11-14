@@ -102,13 +102,13 @@ const contractWorkspaceOSHandler = require('../Operational/contracts/contractWor
 const auditEntryHandler = require('../Operational/sourcing/auditEntryHandler');
 
 
-async function ProcessData(viewTemplateName,Records,realm){
+async function ProcessData(viewTemplateName, Records, realm) {
     //Routes the extracted data to the appropriate processing handler
-    return new Promise(async (resolve,reject)=>{
-        try{
+    return new Promise(async (resolve, reject) => {
+        try {
 
             let affectedRows;
-            switch(viewTemplateName){
+            switch (viewTemplateName) {
                 //Analytical API
                 case "EXT_InvoiceLineItemSA":
                     affectedRows = await invoiceLineItemsSAHandler.insertData(Records, realm)
@@ -145,10 +145,10 @@ async function ProcessData(viewTemplateName,Records,realm){
                     break;
                 case "EXT_AdvancePayment":
                     affectedRows = await advancePaymentFactHanlder.insertData(Records, realm)
-                    break;   
+                    break;
                 case "EXT_Payment":
                     affectedRows = await paymentsFactHandler.insertData(Records, realm)
-                    break;                                       
+                    break;
                 case "EXT_RequisitionLineItem":
                     affectedRows = await requisitionLineItemsFactHandler.insertData(Records, realm)
                     break;
@@ -167,7 +167,7 @@ async function ProcessData(viewTemplateName,Records,realm){
                 case "EXT_ContractWorkspace":
                     affectedRows = await contractWorkspacesFactHandler.insertData(Records, realm)
                     break;
-                 case "EXT_SourcingProject":
+                case "EXT_SourcingProject":
                     affectedRows = await sourcingProjectsFactHandler.insertData(Records, realm)
                     break;
                 case "EXT_SupplierParticipation":
@@ -279,17 +279,17 @@ async function ProcessData(viewTemplateName,Records,realm){
                     affectedRows = await savingsFormFactHandler.insertData(Records, realm)
                     break;
                 case "EXT_InvoiceExceptionType":
-                        affectedRows = await invoiceExceptionTypeDimHandler.insertData(Records, realm)
-                        break;
+                    affectedRows = await invoiceExceptionTypeDimHandler.insertData(Records, realm)
+                    break;
                 case "EXT_EventType":
-                        affectedRows = await eventTypeDimHandler.insertData(Records, realm)
-                        break;
+                    affectedRows = await eventTypeDimHandler.insertData(Records, realm)
+                    break;
                 case "EXT_CostCenter":
-                        affectedRows = await costCenterDimHandler.insertData(Records, realm)
-                        break;
+                    affectedRows = await costCenterDimHandler.insertData(Records, realm)
+                    break;
                 case "EXT_CompanyCode":
-                        affectedRows = await companyCodeDimHandler.insertData(Records, realm)
-                        break;                
+                    affectedRows = await companyCodeDimHandler.insertData(Records, realm)
+                    break;
                 case "EXT_UserData":
                     affectedRows = await userDataDimHandler.insertData(Records, realm)
                     break;
@@ -322,28 +322,28 @@ async function ProcessData(viewTemplateName,Records,realm){
                     break;
                 case "EXT_OS_Alternative":
                     affectedRows = await rfxAlternativeHandler.insertData(Records, realm);
-                    break;                  
+                    break;
                 case "EXT_OS_Task":
                     affectedRows = await taskHandler.insertData(Records, realm);
-                    break;       
+                    break;
                 case "EXT_OS_ItemSupplierData":
                     affectedRows = await itemSupplierDataHandler.insertData(Records, realm);
-                    break;             
+                    break;
                 case "EXT_OS_Scenario":
                     affectedRows = await scenarioHandler.insertData(Records, realm);
-                    break;                
+                    break;
                 case "EXT_OS_SourcingRequest":
                     affectedRows = await sourcingRequestOSHandler.insertData(Records, realm);
-                    break;                
+                    break;
                 case "EXT_OS_SourcingProject":
                     affectedRows = await sourcingProjectOSHandler.insertData(Records, realm);
-                    break;                
+                    break;
                 case "EXT_OS_DocumentTask":
                     affectedRows = await documentTaskHandler.insertData(Records, realm);
-                    break;                 
+                    break;
                 case "EXT_OS_Organization":
                     affectedRows = await organizationHandler.insertData(Records, realm);
-                    break;    
+                    break;
                 case "EXT_OS_ContractWorkspace":
                     affectedRows = await contractWorkspaceOSHandler.insertData(Records, realm);
                     break;
@@ -365,7 +365,7 @@ async function ProcessData(viewTemplateName,Records,realm){
             }
             resolve(affectedRows);
 
-        } catch(e) {
+        } catch (e) {
             logger.error(`Error while processing data for ${viewTemplateName} for realm: ${realm} details: ${e}`);
             reject(e);
         }
