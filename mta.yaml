@@ -2,7 +2,7 @@
 ## appName = dataextraction
 ## language=nodejs; multiTenant=false
 ## approuter=
-_schema-version: '3.1'
+_schema-version: "3.1"
 ID: btp-procurement-data-extractor
 version: 1.0.0
 description: "SAP Ariba Extraction Data Lake"
@@ -16,119 +16,117 @@ build-parameters:
         - npx cds build --production
 
 modules:
+  # --------------------- SERVER MODULE ------------------------
+  - name: btp-procurement-data-extractor-srv
+    # ------------------------------------------------------------
+    type: nodejs
+    path: gen/srv
+    build-parameters:
+      ignore: ["node_modules/"]
+    parameters:
+      buildpack: nodejs_buildpack
+      app-name: btp-procurement-data-extractor-srv
+      disk-quota: 1GB
+      memory: 1GB
+    properties:
+      CDS_HANA_POOL_MIN: 5
+      CDS_HANA_POOL_MAX: 50
+      CDS_HANA_ACQUIRE_TIMEOUT: 60000
+      CDS_HANA_CREATE_TIMEOUT: 30000
+      CDS_HANA_IDLE_TIMEOUT: 300000
+    requires:
+      # Resources extracted from CAP configuration
+      - name: btp-procurement-data-extractor-hana
+      - name: btp-procurement-data-extractor-uaa
+      - name: btp-procurement-data-extractor-dest
+      - name: btp-procurement-data-extractor-conn
+      - name: btp-procurement-data-extractor-log
+      - name: btp-procurement-data-extractor-jobscheduler
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        public: true
+        properties:
+          url: ${default-url}
 
- # --------------------- SERVER MODULE ------------------------
- - name: btp-procurement-data-extractor-srv
- # ------------------------------------------------------------
-   type: nodejs
-   path: gen/srv
-   build-parameters:
-     ignore: ["node_modules/"]
-   parameters:
-     buildpack: nodejs_buildpack
-     app-name: btp-procurement-data-extractor-srv
-     disk-quota: 1GB
-     memory: 1GB
-   properties:
-     CDS_HANA_POOL_MIN: 5
-     CDS_HANA_POOL_MAX: 50
-     CDS_HANA_ACQUIRE_TIMEOUT: 60000
-     CDS_HANA_CREATE_TIMEOUT: 30000
-     CDS_HANA_IDLE_TIMEOUT: 300000
-   requires:
-    # Resources extracted from CAP configuration
-    - name: btp-procurement-data-extractor-hana
-    - name: btp-procurement-data-extractor-uaa
-    - name: btp-procurement-data-extractor-dest
-    - name: btp-procurement-data-extractor-conn
-    - name: btp-procurement-data-extractor-log
-    - name: btp-procurement-data-extractor-jobscheduler
-   provides:
-    - name: srv-api      # required by consumers of CAP services (e.g. approuter)
-      public: true
-      properties:
-        url: ${default-url}
-
- - name: btp-procurement-data-extractor-db-deployer
-   type: hdb
-   path: gen/db
-   build-parameters:
-    ignore: ["node_modules/"]
-   parameters:
-    buildpack: nodejs_buildpack
-   requires:
-    - name: btp-procurement-data-extractor-hana
-      parameters:
-       disk-quota: 256M
-       memory: 256M
-      properties:
-       TARGET_CONTAINER: ~{hdi-service-name}
-    - name: cross-container-service-1
-      group: SERVICE_REPLACEMENTS
-      properties:
-       key: ServiceName_1
-       service: ~{userprovided-service-name}
+  - name: btp-procurement-data-extractor-db-deployer
+    type: hdb
+    path: gen/db
+    build-parameters:
+      ignore: ["node_modules/"]
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: btp-procurement-data-extractor-hana
+        parameters:
+          disk-quota: 256M
+          memory: 256M
+        properties:
+          TARGET_CONTAINER: ~{hdi-service-name}
+      - name: cross-container-service-1
+        group: SERVICE_REPLACEMENTS
+        properties:
+          key: ServiceName_1
+          service: ~{userprovided-service-name}
 
 resources:
-# ------------------------------------------------------------
- - name: btp-procurement-data-extractor-hana
-# ------------------------------------------------------------
-   type: com.sap.xs.hdi-container
-   parameters:
-    config:
-     
-     schema: SAP_ARIBA_FOUNDATION
-    service: hana
-    service-plan: hdi-shared
-   properties:
-    hdi-service-name: ${service-name}
+  # ------------------------------------------------------------
+  - name: btp-procurement-data-extractor-hana
+    # ------------------------------------------------------------
+    type: com.sap.xs.hdi-container
+    parameters:
+      config:
+        schema: SAP_ARIBA_FOUNDATION
+      service: hana
+      service-plan: hdi-shared
+    properties:
+      hdi-service-name: ${service-name}
 
- - name: cross-container-service-1
-   type: org.cloudfoundry.existing-service
-   parameters:
-     service-name: DS_INTEGRATION
-   properties:
-     userprovided-service-name: ${service-name}
+  - name: cross-container-service-1
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: DS_INTEGRATION
+    properties:
+      userprovided-service-name: ${service-name}
 
- # ------------------------------------------------------------
- - name: btp-procurement-data-extractor-jobscheduler
- # ------------------------------------------------------------
-   type: org.cloudfoundry.managed-service
-   parameters:
-     service-plan: standard
-     service: jobscheduler
-     config:
-       enable-xsuaa-support: true
+  # ------------------------------------------------------------
+  - name: btp-procurement-data-extractor-jobscheduler
+    # ------------------------------------------------------------
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service-plan: standard
+      service: jobscheduler
+      config:
+        enable-xsuaa-support: true
 
-# ------------------------------------------------------------
- - name: btp-procurement-data-extractor-uaa
-# ------------------------------------------------------------
-   type: org.cloudfoundry.managed-service
-   parameters:
-     service: xsuaa
-     service-plan: application
-     path: ./xs-security.json
+  # ------------------------------------------------------------
+  - name: btp-procurement-data-extractor-uaa
+    # ------------------------------------------------------------
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
 
-# ------------------------------------------------------------
- - name: btp-procurement-data-extractor-dest
-# ------------------------------------------------------------
-   type: org.cloudfoundry.managed-service
-   parameters:
-     service-plan: lite
-     service: destination
+  # ------------------------------------------------------------
+  - name: btp-procurement-data-extractor-dest
+    # ------------------------------------------------------------
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service-plan: lite
+      service: destination
 
-# ------------------------------------------------------------
- - name: btp-procurement-data-extractor-conn
-# ------------------------------------------------------------
-   type: org.cloudfoundry.managed-service
-   parameters:
-     service-plan: lite
-     service: connectivity
+  # ------------------------------------------------------------
+  - name: btp-procurement-data-extractor-conn
+    # ------------------------------------------------------------
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service-plan: lite
+      service: connectivity
 
-# ------------------------------------------------------------
- - name: btp-procurement-data-extractor-log
-# ------------------------------------------------------------
-   type: org.cloudfoundry.managed-service
-   parameters:
-     service-plan: standard
-     service: cloud-logging
+  # ------------------------------------------------------------
+  - name: btp-procurement-data-extractor-log
+    # ------------------------------------------------------------
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service-plan: standard
+      service: cloud-logging
