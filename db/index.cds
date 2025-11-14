@@ -115,14 +115,3 @@ using from './SupplierManagement/SLPSuppliers';
 //masterdata
 using from './MasterData/CommodityCode';
 using from './MasterData/PaymentTerms';
-
-//Custom cds
-using from './Operational/custom/DynamicFormDocument_GarantadeContrato';
-using from './Operational/custom/DynamicFormDocument_Formulariopararecursosderevisin';
-using from './Operational/custom/DynamicFormDocument_FormularioIncumplimiento';
-using from './Operational/custom/DynamicFormDocument_FormMuestra';
-using from './Operational/custom/DynamicFormDocument_FormularioISSSparafechasacuerdosynotificaciones';
-using from './Operational/custom/DynamicFormDocument_LessonsLearned';
-using from './Operational/custom/DynamicFormDocument_FormularioparafechasyacuerdosNEW';
-using from './Operational/custom/DynamicFormDocument_Formularioderegistrodeofertantes';
-using from './Operational/custom/DynamicFormDocument_Formularioparanotificaciones';
