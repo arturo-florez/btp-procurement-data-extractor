@@ -105,12 +105,25 @@ type nextVersion {
 }
 
 type documentId {
-    InternalId      : String(50);
-    Title           : documentIdTitle;
-    DocumentVersion : Integer;
-    IsReportVersion : Boolean;
-    TimeCreated     : DateTime;
-    TimeUpdated     : DateTime;
+    InternalId                       : String(50);
+    Title                            : documentIdTitle;
+    DocumentVersion                  : Integer;
+    IsReportVersion                  : Boolean;
+    TimeCreated                      : DateTime;
+    TimeUpdated                      : DateTime;
+    ariba_FormDetails                : many formDetail;
+    PreviousVersion                  : previousVersion;
+    Active                           : Boolean;
+    ParentWorkspace                  : parentWorkspace;
+    NextVersion                      : nextVersion;
+}
+
+type formDetail {
+    LineNumber : Integer;
+}
+
+type previousVersion {
+    InternalId : String(255);
 }
 
 type documentIdTitle {
